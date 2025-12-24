@@ -8,10 +8,12 @@ import ScrollToTop from './components/ScrollToTop'
 
 const ChristmasPortal = lazy(() => import('./components/ChristmasPortal'))
 const YearlyEventsPortal = lazy(() => import('./components/YearlyEventsPortal'))
+import ParticleTree from './components/ParticleTree'
 
 function App() {
   const [isPortalOpen, setIsPortalOpen] = useState(false)
   const [isYearlyEventsOpen, setIsYearlyEventsOpen] = useState(false)
+  const [isTreeOpen, setIsTreeOpen] = useState(false)
 
   const handleOpenPortal = useCallback(() => {
     setIsPortalOpen(true)
@@ -29,12 +31,24 @@ function App() {
     setIsYearlyEventsOpen(false)
   }, [])
 
+  const handleOpenTree = useCallback(() => {
+    setIsTreeOpen(true)
+  }, [])
+
+  const handleCloseTree = useCallback(() => {
+    setIsTreeOpen(false)
+  }, [])
+
   return (
     <div className="bg-gradient-to-b from-blue-900 via-purple-900 to-indigo-900 relative">
       <Snowfall />
       <div className="relative z-10">
         <Header />
-        <MainContent onOpenPortal={handleOpenPortal} onOpenYearlyEvents={handleOpenYearlyEvents} />
+        <MainContent 
+          onOpenPortal={handleOpenPortal} 
+          onOpenYearlyEvents={handleOpenYearlyEvents}
+          onOpenTree={handleOpenTree}
+        />
         <Footer />
       </div>
       <AudioPlayer isYearlyEventsOpen={isYearlyEventsOpen} />
@@ -42,6 +56,7 @@ function App() {
       <Suspense fallback={null}>
         {isPortalOpen && <ChristmasPortal isOpen={isPortalOpen} onClose={handleClosePortal} />}
         {isYearlyEventsOpen && <YearlyEventsPortal isOpen={isYearlyEventsOpen} onClose={handleCloseYearlyEvents} />}
+        {isTreeOpen && <ParticleTree isOpen={isTreeOpen} onClose={handleCloseTree} />}
       </Suspense>
     </div>
   )

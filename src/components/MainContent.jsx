@@ -16,7 +16,7 @@ const LoadingSpinner = () => (
   </div>
 )
 
-const MainContent = memo(function MainContent({ onOpenPortal, onOpenYearlyEvents }) {
+const MainContent = memo(function MainContent({ onOpenPortal, onOpenYearlyEvents, onOpenTree }) {
   const buttonParticles = useMemo(() => 
     Array.from({ length: 4 }, (_, i) => ({
       id: i,
@@ -73,7 +73,7 @@ const MainContent = memo(function MainContent({ onOpenPortal, onOpenYearlyEvents
               Ông già Noel cưỡi tuần lộc bay qua bầu trời đêm đầy sao và ánh sáng lung linh từ mặt trăng.
             </p>
 
-            <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center flex-wrap">
               <motion.button
                 whileHover={{ scale: 1.1, boxShadow: '0 0 40px rgba(255, 215, 0, 0.8)' }}
                 whileTap={{ scale: 0.95 }}
@@ -161,6 +161,60 @@ const MainContent = memo(function MainContent({ onOpenPortal, onOpenYearlyEvents
                   <motion.div
                     key={i}
                     className="absolute w-2 h-2 bg-blue-300 rounded-full"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      willChange: 'transform, opacity',
+                    }}
+                    animate={{
+                      opacity: [0, 1, 0],
+                      scale: [0, 1.2, 0],
+                      x: [0, (Math.random() - 0.5) * 50],
+                      y: [0, (Math.random() - 0.5) * 50],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      delay: i * 0.3,
+                      ease: 'easeOut',
+                    }}
+                  />
+                ))}
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.1, boxShadow: '0 0 40px rgba(34, 197, 94, 0.8)' }}
+                whileTap={{ scale: 0.95 }}
+                onClick={onOpenTree}
+                className="bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-bold py-4 px-10 rounded-full text-xl shadow-2xl transition-all relative overflow-hidden group"
+                style={{
+                  filter: 'drop-shadow(0 0 20px rgba(34, 197, 94, 0.6))',
+                  willChange: 'transform',
+                }}
+              >
+                <motion.span
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 15, -15, 0],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="absolute -top-2 -right-2 text-3xl"
+                  style={{
+                    filter: 'drop-shadow(0 0 10px rgba(34, 197, 94, 0.8))',
+                    willChange: 'transform',
+                  }}
+                >
+                  🎄
+                </motion.span>
+                <span className="relative z-10">Tạo Cây Thông Noel</span>
+                {Array.from({ length: 4 }, (_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 bg-green-300 rounded-full"
                     style={{
                       left: `${Math.random() * 100}%`,
                       top: `${Math.random() * 100}%`,
