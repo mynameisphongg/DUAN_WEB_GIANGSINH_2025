@@ -1,4 +1,4 @@
-# 🎄 Landing Page Giáng Sinh 2024
+# 🎄 Landing Page Giáng Sinh 2025
 
 Landing page Giáng Sinh với các hiệu ứng động đẹp mắt, được xây dựng bằng React và Vite.
 
