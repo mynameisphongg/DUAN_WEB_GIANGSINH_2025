@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/DUAN_WEB_GIANGSINH_2025/',
+  base: '/',
   build: {
     rollupOptions: {
       output: {
